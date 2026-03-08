@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F8F9FA;
+  --foreground: #2B2D42;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    color: var(--foreground);
+    background-color: var(--background);
+    background-image: theme('backgroundImage.mesh-gradient');
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgba(242, 132, 130, 0.25);
+    color: #2B2D42;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/40 backdrop-blur-md border border-white/60 shadow-sm;
+  }
+
+  .glass-card {
+    @apply bg-white/40 backdrop-blur-md border border-white/60 shadow-sm rounded-2xl;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 ease-out hover:bg-white/55 hover:shadow-md hover:-translate-y-1 motion-reduce:hover:translate-y-0 motion-reduce:transition-none;
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-heading {
+    @apply text-3xl sm:text-4xl font-bold text-dark-slate tracking-tight;
+  }
+
+  .section-subheading {
+    @apply text-lg text-dark-slate/60 mt-3 font-normal;
+  }
+
+  .tag-pill {
+    @apply font-mono text-xs px-2.5 py-1 rounded-md bg-white/60 border border-white/80 text-dark-slate/70;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-salmon text-white font-semibold text-sm
+           shadow-sm hover:bg-salmon-dark transition-all duration-200 hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-salmon/50 motion-reduce:hover:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl glass font-semibold text-sm text-dark-slate
+           hover:bg-white/60 transition-all duration-200 hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-dark-slate/20 motion-reduce:hover:translate-y-0;
+  }
+}
+
+@layer utilities {
+  .text-gradient-salmon {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-salmon to-salmon-dark;
+  }
+
+  .text-gradient-teal {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-teal to-teal-dark;
+  }
+
+  .animate-opacity-0 {
+    opacity: 0;
+  }
+}
