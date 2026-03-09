@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           {/* Logo + tagline */}
           <div className="text-center sm:text-left">
-            <span className="font-mono font-semibold text-dark-slate">
+            <span className="font-sans font-bold text-dark-slate">
               <span className="text-salmon">{'<'}</span>KZN<span className="text-salmon">{'/>'}</span>
             </span>
             <p className="text-dark-slate/50 text-sm mt-1">

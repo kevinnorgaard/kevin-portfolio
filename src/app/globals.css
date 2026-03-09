@@ -16,9 +16,14 @@
     color: var(--foreground);
     background-color: var(--background);
     background-image: theme('backgroundImage.mesh-gradient');
-    background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (min-width: 640px) {
+    body {
+      background-attachment: fixed;
+    }
   }
 
   ::selection {
@@ -71,7 +76,12 @@
   .parallax-content {
     background-color: var(--background);
     background-image: theme('backgroundImage.mesh-gradient');
-    background-attachment: fixed;
+  }
+
+  @media (min-width: 640px) {
+    .parallax-content {
+      background-attachment: fixed;
+    }
   }
 }
 

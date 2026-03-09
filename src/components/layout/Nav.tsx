@@ -70,7 +70,7 @@ export default function Nav() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-mono font-semibold text-lg tracking-tight text-dark-slate hover:opacity-80 transition-opacity"
+            className="font-sans font-bold text-xl tracking-normal text-dark-slate hover:opacity-80 transition-opacity"
             aria-label="Kevin Norgaard – Home"
           >
             <span className="text-salmon">{'<'}</span>
@@ -98,8 +98,9 @@ export default function Nav() {
               href={RESUME_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-3 px-4 py-2 rounded-xl bg-salmon text-white text-sm font-semibold
-                         hover:bg-salmon-dark transition-colors duration-200 shadow-sm"
+              className="ml-3 px-5 py-2.5 rounded-xl text-white text-[15.2px] font-medium
+                         transition-all duration-200 shadow-sm hover:opacity-90 inline-flex items-center gap-1.5"
+              style={{ background: 'linear-gradient(90deg, #fca5a5, #f87171)' }}
             >
               Resume ↗
             </a>
@@ -143,7 +144,8 @@ export default function Nav() {
               href={RESUME_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 mx-0 px-4 py-2 rounded-xl bg-salmon text-white text-sm font-semibold text-center"
+              className="mt-2 mx-0 px-4 py-2 rounded-xl text-white text-sm font-semibold text-center inline-flex items-center justify-center gap-1.5"
+              style={{ background: 'linear-gradient(90deg, #fca5a5, #f87171)' }}
             >
               Resume ↗
             </a>

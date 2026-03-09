@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npm run build && rsync -avz --delete -e 'ssh -p 21098' out/ ainecmrx@67.223.118.183:~/kevinnorgaard.com/"
+    "deploy": "npm run build && rsync -avz --delete -e 'ssh -p 21098' out/ ainecmrx@67.223.118.183:~/kevinnorgaard.com/",
+    "screenshots": "node scripts/screenshots.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.1.6",
@@ -20,6 +21,7 @@
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

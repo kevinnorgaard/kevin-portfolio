@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Fira_Code } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
@@ -10,9 +10,9 @@ const inter = Inter({
   display: 'swap',
 })
 
-const firaCode = Fira_Code({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  variable: '--font-fira-code',
+  variable: '--font-jetbrains-mono',
   weight: ['400', '500', '600'],
   display: 'swap',
 })
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
         <script
           dangerouslySetInnerHTML={{
