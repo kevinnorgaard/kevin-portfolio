@@ -71,6 +71,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-N9HTSC3P');`,
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Kevin Z Norgaard',
+              url: 'https://kevinnorgaard.com',
+              jobTitle: 'Software Engineer III',
+              worksFor: { '@type': 'Organization', name: 'eBay' },
+              alumniOf: {
+                '@type': 'CollegeOrUniversity',
+                name: 'University of California, Irvine',
+              },
+              knowsAbout: [
+                'Java',
+                'Spring Boot',
+                'TypeScript',
+                'Next.js',
+                'Distributed Systems',
+                'AI Integrations',
+              ],
+              sameAs: ['https://www.linkedin.com/in/kevinnorgaard/'],
+            }),
+          }}
+        />
       </head>
       <body className="min-h-screen flex flex-col">
         <noscript>
