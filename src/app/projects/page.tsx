@@ -1,32 +1,46 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { projects } from '@/data/projects'
 import ProjectCard from '@/components/projects/ProjectCard'
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description:
-    'Full-stack and backend projects by Kevin Norgaard — live apps with real users, production architecture, and measurable outcomes.',
+  description: 'Full-stack and backend projects by Kevin Z Norgaard.',
 }
 
 export default function ProjectsPage() {
   return (
     <div className="py-16 sm:py-20">
       <div className="section-container">
-        {/* Header */}
-        <div className="mb-12">
-          <h1 className="section-heading text-5xl sm:text-6xl">Projects</h1>
-          <p className="section-subheading max-w-xl">
-            Every app here is live, deployed, and serving real users. No CRUD demos — actual systems
-            with architectural decisions behind them.
-          </p>
+
+        {/* Breadcrumb */}
+        <nav className="mb-8 flex items-center gap-2 text-sm text-dark-slate/50 font-mono" aria-label="Breadcrumb">
+          <Link href="/" className="hover:text-salmon transition-colors">
+            Home
+          </Link>
+          <span aria-hidden="true">/</span>
+          <span className="text-dark-slate">Projects</span>
+        </nav>
+
+        <div className="mb-10">
+          <h1 className="section-heading">Projects</h1>
         </div>
 
-        {/* Project grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} maxTags={5} />
+            <ProjectCard key={project.slug} project={project} maxTags={4} />
           ))}
         </div>
+
+        <div className="mt-16 pt-8 border-t border-white/40">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-dark-slate/60 hover:text-salmon transition-colors"
+          >
+            ← Back to home
+          </Link>
+        </div>
+
       </div>
     </div>
   )

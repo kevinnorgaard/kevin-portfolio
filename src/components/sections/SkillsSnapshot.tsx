@@ -8,11 +8,8 @@ export default function SkillsSnapshot() {
       <div className="section-container">
         <div className="mb-10">
           <h2 id="skills-heading" className="section-heading">
-            Technical Skills
+            Skills
           </h2>
-          <p className="section-subheading">
-            Production experience across the full backend &amp; infra stack.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

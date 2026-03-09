@@ -2,31 +2,67 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const RESUME_URL =
-  'https://drive.google.com/file/d/1F6qMER9oUWYAym1Kn32JWDOP54n7XuRk/view?usp=drive_link'
+  'https://drive.google.com/file/d/1SSiXrhUnJI8cMZq8-PT2zF2ZWuDIauV0/view?usp=sharing'
 
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
-  { href: '/about', label: 'About' },
   { href: '/#contact', label: 'Contact' },
 ]
 
 export default function Nav() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(0)
+  const [activeSection, setActiveSection] = useState<string | null>(null)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(Math.min(window.scrollY / 80, 1))
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    if (pathname !== '/') return
+    const sections = ['contact']
+    const observers = sections.map((id) => {
+      const el = document.getElementById(id)
+      if (!el) return null
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id)
+          else setActiveSection((prev) => (prev === id ? null : prev))
+        },
+        { rootMargin: '-20% 0px -60% 0px' }
+      )
+      observer.observe(el)
+      return observer
+    })
+    return () => observers.forEach((o) => o?.disconnect())
+  }, [pathname])
 
   const isActive = (href: string) => {
-    if (href === '/') return pathname === '/'
-    if (href.startsWith('/#')) return false
+    if (href === '/') return pathname === '/' && activeSection === null
+    if (href.startsWith('/#')) {
+      const section = href.slice(2)
+      return pathname === '/' && activeSection === section
+    }
     return pathname.startsWith(href)
   }
 
   return (
     <nav
-      className="sticky top-0 z-50 bg-white/50 backdrop-blur-md border-b border-white/60 shadow-sm"
+      className="fixed top-0 left-0 right-0 z-50 transition-shadow duration-300"
+      style={{
+        background: mobileOpen ? 'rgba(248,249,250,1)' : `rgba(255,255,255,${scrolled * 0.5})`,
+        backdropFilter: mobileOpen ? 'none' : `blur(${scrolled * 12}px)`,
+        WebkitBackdropFilter: mobileOpen ? 'none' : `blur(${scrolled * 12}px)`,
+        borderBottom: scrolled === 0 && !mobileOpen ? 'none' : `1px solid rgba(255,255,255,${scrolled * 0.6})`,
+        boxShadow: mobileOpen ? '0 4px 12px rgba(0,0,0,0.08)' : scrolled > 0.5 ? `0 1px 3px rgba(0,0,0,${scrolled * 0.06})` : 'none',
+      }}
       aria-label="Main navigation"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,7 +74,7 @@ export default function Nav() {
             aria-label="Kevin Norgaard – Home"
           >
             <span className="text-salmon">{'<'}</span>
-            KN
+            KZN
             <span className="text-salmon">{'/>'}</span>
           </Link>
 

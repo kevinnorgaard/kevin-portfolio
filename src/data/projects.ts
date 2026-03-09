@@ -2,237 +2,269 @@ import type { Project } from './types'
 
 export const projects: Project[] = [
   {
-    slug: 'uci-sba',
-    name: 'UCI SBA',
-    liveUrl: 'https://ucisba.kevinnorgaard.com',
-    tagline: 'Member portal & event platform for the UCI Student Business Association',
+    slug: 'uci-phi-psi',
+    name: 'UCI Phi Kappa Psi Website',
+    liveUrl: 'https://www.uciphipsi.kevinnorgaard.com',
+    githubUrl: 'https://github.com/kevinnorgaard/pkp',
+    tagline: 'Full-stack fraternity chapter website built with Angular, Firebase, and Hygraph CMS',
     summary:
-      'A full-stack web platform serving 500+ active members with event registration, resource management, officer dashboards, and a searchable member directory — built for speed and reliability on a zero-budget infra footprint.',
-    tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'Redis', 'REST API', 'Tailwind CSS'],
+      'A full-stack platform serving recruits, active members, and alumni — with CMS-driven exec board and leadership history profiles, a recruitment interest form and event check-in flow, per-event attendance tracking, composite photo galleries, and a password-protected admin dashboard. Collected 250+ PNM contacts and 150+ alumni profiles within two years.',
+    image: '/images/uci-phi-psi.png',
+    tags: ['Angular', 'TypeScript', 'Firebase', 'GraphQL', 'Apollo', 'Hygraph CMS', 'RxJS', 'Angular Material'],
     featured: true,
     status: 'live',
     problem:
-      'The UCI Student Business Association managed events, announcements, and member info across a patchwork of Google Sheets, email threads, and static pages. Officers spent hours on manual coordination. Members had no single source of truth for upcoming events, meeting notes, or resources. The goal was to consolidate everything into a fast, self-service web platform without any ongoing SaaS costs.',
+      'The Phi Kappa Psi chapter at UCI had no centralized digital presence — recruitment, alumni outreach, event coordination, and leadership history were all managed manually or scattered across disconnected tools. Officers needed a platform that could serve three distinct audiences (recruits, active members, alumni) and stay relevant year-round without requiring a developer for every content update or seasonal change.',
     architecture: {
-      mermaid: `graph TB
-    subgraph Client["Browser / CDN Edge"]
-        A["Next.js App Router<br/>(Static Export)"]
-    end
-    subgraph API["API Layer"]
-        B["Next.js Route Handlers"]
-        C["Auth Middleware (JWT)"]
-    end
-    subgraph Data["Data Layer"]
-        D[("PostgreSQL<br/>(Members, Events, Posts)")]
-        E[("Redis<br/>(Session Cache)")]
-    end
-    subgraph Storage["Object Storage"]
-        F["S3-Compatible<br/>(Uploads, Assets)"]
-    end
-    A --> B
-    B --> C
-    C --> D
-    C --> E
-    B --> F`,
+      mermaid: `graph TD
+    C["Angular SPA — Public"] -->|"GraphQL / Apollo"| A["Hygraph CMS"]
+    C -.->|"route mode"| B["Environment Flag"]
+    D["Angular SPA — Admin"] --> E["Firebase Auth"]
+    D --> F["Firebase Realtime DB"]`,
       explanation:
-        'The frontend is statically exported and served from a CDN for near-instant global load times. Dynamic data (member auth, event registration) flows through lightweight Next.js Route Handlers protected by JWT middleware. PostgreSQL handles all relational data; Redis caches session tokens and frequently accessed event listings to cut DB roundtrips by ~70%.',
+        'Hygraph serves exec profiles, leadership history, and composite galleries via Apollo GraphQL — zero redeployment for content updates. The root route swaps at build time via an environment flag (normal / rush / philanthropy) to serve different seasonal landing pages from the same codebase. The admin dashboard is gated behind Firebase Auth and reads/writes rushee forms, event check-ins, and alumni records to Firebase Realtime Database.',
     },
     scale: {
       metrics: [
-        { label: 'Active Members', value: '500+' },
-        { label: 'p95 API Latency', value: '<180ms' },
-        { label: 'Lighthouse Score', value: '97' },
-        { label: 'Uptime (30-day)', value: '99.9%' },
-        { label: 'Cache Hit Rate', value: '~72%' },
-        { label: 'Monthly Page Views', value: '~4K' },
+        { label: 'PNMs Collected', value: '250+' },
+        { label: 'Alumni Profiles', value: '150+' },
+        { label: 'Seasons Supported', value: '3' },
+        { label: 'Deployments to Update', value: '0' },
+        { label: 'Admin Auth', value: 'Firebase' },
+        { label: 'CMS Updates', value: 'Real-time' },
       ],
       details:
-        'Redis session caching eliminates repeated DB lookups for authenticated requests. All static assets are fingerprinted and served via CDN with aggressive Cache-Control headers. The PostgreSQL schema is normalized with GIN indexes on searchable text fields, keeping member-directory queries under 20ms even as the table grows.',
+        'Within two years of launch, the platform collected contact information for 250+ potential new members and 150+ alumni profiles. Seasonal transitions (rush, philanthropy) are handled by swapping the root route at build time via an environment flag — no backend changes required.',
     },
-    dataModel: `-- Core schema (simplified)
-CREATE TABLE members (
-  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  email      TEXT UNIQUE NOT NULL,
-  name       TEXT NOT NULL,
-  grad_year  SMALLINT,
-  major      TEXT,
-  created_at TIMESTAMPTZ DEFAULT NOW()
-);
+    dataModel: [
+      {
+        label: 'Firebase Realtime Database',
+        lang: 'yaml',
+        content: `forms:
+  "{phone}":
+    name:         "LastName, FirstName"
+    email:        string
+    year:         string
+    major:        string
+    minor:        string
+    cumGpa:       string
+    prevGpa:      string
+    sports:       string
+    achievements: string
+    reasons:      string
+    referral:     string
+    notes:        string  # admin-added
+    socialMedia:
+      facebook:   string
+      instagram:  string
+      linkedin:   string
 
-CREATE TABLE events (
-  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  title       TEXT NOT NULL,
-  description TEXT,
-  location    TEXT,
-  starts_at   TIMESTAMPTZ NOT NULL,
-  ends_at     TIMESTAMPTZ,
-  capacity    INT,
-  created_by  UUID REFERENCES members(id)
-);
+checkins:
+  "{phone}":
+    "{date}": true  # date format: "YYYY-M-D"
 
-CREATE TABLE rsvps (
-  member_id UUID REFERENCES members(id),
-  event_id  UUID REFERENCES events(id),
-  status    TEXT CHECK (status IN ('attending', 'waitlisted', 'cancelled')),
-  PRIMARY KEY (member_id, event_id)
-);
+alumni:
+  "{name}":
+    fullName: string
+    email:    string`,
+      },
+      {
+        label: 'Hygraph CMS',
+        lang: 'graphql',
+        content: `type Image {
+  fileName: String!
+  url:      String!
+}
 
--- GIN index for full-text member search
-CREATE INDEX members_name_search ON members USING GIN (to_tsvector('english', name));`,
+type Executive {
+  name:     String!
+  position: String!
+  image:    Image
+  url:      String
+  order:    Int!
+}
+
+type Leader {
+  name:  String!
+  title: String!
+  year:  Int!
+}
+
+type MembershipPage {
+  compositeImage: Image!
+  compositeYear:  Int!
+}`,
+      },
+    ],
   },
 
   {
-    slug: 'uci-phi-psi',
-    name: 'UCI Phi Psi',
-    liveUrl: 'https://uciphipsi.kevinnorgaard.com',
-    tagline: 'Chapter website & rush portal for Phi Kappa Psi at UC Irvine',
+    slug: 'uci-sba',
+    name: 'UCI Sports Business Association Website',
+    liveUrl: 'https://www.ucisba.kevinnorgaard.com',
+    tagline: 'Student org website for the UC Irvine Sports Business Association, powered by Contentful CMS',
     summary:
-      'A polished marketing and recruitment site for the Phi Kappa Psi chapter at UCI. Features brotherhood profiles, rush event schedules, an FAQ system, and a contact/interest form — all statically generated for maximum SEO and zero runtime cost.',
-    tags: ['Next.js', 'TypeScript', 'Headless CMS', 'Static Generation', 'SEO', 'Tailwind CSS'],
+      'An Angular SPA with a centralized Contentful-driven content layer — featuring an interactive FullCalendar event calendar, exec board and alumni directory profiles, toggleable speaker archives, and Mailchimp newsletter integration. Officers update all content without redeployment.',
+    image: '/images/uci-sba.png',
+    tags: ['Angular', 'TypeScript', 'Contentful', 'RxJS', 'FullCalendar', 'Bootstrap 3', 'Moment.js'],
     featured: true,
     status: 'live',
     problem:
-      "Fraternity recruitment lives and dies by first impressions. The chapter's existing web presence was a dated WordPress site with poor mobile UX and an 8-second load time. During rush season — the highest-traffic window of the year — slow pages cost real interest. The new site needed to be blazing fast, mobile-first, and easy for non-technical officers to update.",
+      'The UCI Sports Business Association had no centralized web presence — event announcements, speaker archives, membership info, and officer profiles were scattered and required developer involvement to update. Officers needed a platform that non-technical members could maintain through a CMS, with an event calendar that could display both upcoming and past speakers and a newsletter integration to grow their membership funnel.',
     architecture: {
-      mermaid: `graph LR
-    subgraph Authoring["Content Authoring"]
-        A["Headless CMS<br/>(Officer Admin UI)"]
-    end
-    subgraph Build["Build Pipeline"]
-        B["Next.js<br/>generateStaticParams"]
-        C["Static HTML + Assets"]
-    end
-    subgraph Edge["Delivery"]
-        D["CDN / Edge Cache"]
-        E["Browser"]
-    end
-    A -->|"Webhook on publish"| B
+      mermaid: `graph TD
+    A["Contentful CMS"]
+    B["Content Service"]
+    C["Public Pages"]
+    D["FullCalendar"]
+    E["Mailchimp API"]
+
+    A -->|"Delivery API"| B
     B --> C
-    C --> D
-    D --> E`,
+    B --> D
+    C -->|"newsletter signup"| E`,
       explanation:
-        'All pages are pre-rendered at build time via generateStaticParams — no server required at runtime. Content updates from officers trigger a webhook that kicks off a sub-2-minute rebuild and deploy. The result is a fully static site served from the edge with Time-To-First-Byte under 80ms globally.',
+        'A centralized Angular content service decouples all page data from the codebase — homepage sections, membership rates, event listings, exec board profiles, and alumni directory entries are all fetched from Contentful at runtime via the Delivery API. This means officers can publish changes without any redeployment. FullCalendar renders events with toggleable upcoming/past views, and Mailchimp handles newsletter subscriptions directly from the site.',
     },
     scale: {
       metrics: [
-        { label: 'Lighthouse Perf', value: '99' },
-        { label: 'TTFB (global avg)', value: '<80ms' },
-        { label: 'Build Time', value: '<90s' },
-        { label: 'Rush Season Peak', value: '~2K sessions/wk' },
-        { label: 'Bounce Rate', value: '↓ 34% vs. prior site' },
-        { label: 'Mobile Score', value: '98' },
+        { label: 'CMS-Driven Pages', value: '100%' },
+        { label: 'Deployments to Update', value: '0' },
+        { label: 'Event Views', value: 'Calendar + List' },
+        { label: 'Newsletter', value: 'Mailchimp' },
+        { label: 'Speaker Archive', value: 'Toggleable' },
+        { label: 'Content Authors', value: 'Non-technical' },
       ],
       details:
-        'Because every page is static HTML, the site survives burst traffic during rush week with zero infrastructure changes. Images are served as optimized WebP via CDN. Core Web Vitals (LCP, CLS, INP) are all in the green — critical for Google search ranking during recruitment season.',
+        'The centralized content service means all data — from homepage copy to alumni directory entries — is managed in Contentful and reflected on the site in real time. Officers with no engineering background can update membership rates, post new events, and add speaker recaps without touching the codebase.',
     },
-    dataModel: `// CMS Content Types (schema definition)
-
-interface BrotherhoodProfile {
-  id: string
-  name: string
-  year: 'Freshman' | 'Sophomore' | 'Junior' | 'Senior' | 'Alumni'
-  major: string
-  bio: string
-  interests: string[]
-  photoUrl: string
-  role?: string // e.g. "President", "Rush Chair"
+    dataModel: [
+      {
+        label: 'Contentful CMS',
+        lang: 'graphql',
+        content: `type Image {
+  fileName: String!
+  url:      String!
 }
 
-interface RushEvent {
-  id: string
-  title: string
-  description: string
-  date: string       // ISO 8601
-  location: string
-  dresscode?: string
-  openToAll: boolean
+type ExecBoardMember {
+  name:     String!
+  role:     String!
+  semester: String!
+  bio:      String
+  photo:    Image
+  linkedIn: String
 }
 
-interface FaqItem {
-  question: string
-  answer: string
-  category: 'Rush' | 'Membership' | 'Chapter Life'
-  order: number
+type Event {
+  title:        String!
+  date:         DateTime!
+  type:         String   # "upcoming" | "past"
+  speaker:      String
+  speakerPhoto: Image
+  location:     String
+  description:  RichText
+  recordingUrl: String
+}
+
+type AlumniEntry {
+  name:           String!
+  graduationYear: Int!
+  company:        String
+  role:           String
+  linkedIn:       String
+  photo:          Image
+}
+
+type HomepageSection {
+  sectionKey: String!    # "hero" | "about" | "membership"
+  heading:    String
+  body:       RichText
+  ctaLabel:   String
+  ctaUrl:     String
 }`,
+      },
+    ],
   },
 
   {
     slug: 'carina-collective',
-    name: 'Carina Collective',
-    liveUrl: 'https://carinacollective.kevinnorgaard.com',
-    tagline: 'Portfolio & booking platform for an independent creative collective',
+    name: 'Lifestyle Blog Platform',
+    liveUrl: 'https://www.carinacollective.kevinnorgaard.com',
+    githubUrl: 'https://github.com/kevinnorgaard/contentful-blog',
+    tagline: 'Full-stack blog platform with SSR built with Angular Universal and Contentful',
     summary:
-      'A full-stack web platform for a creative collective — featuring a dynamic portfolio showcase, client inquiry flow with Stripe-powered deposits, a content-managed blog, and a custom admin dashboard. Built to convert visitors to clients.',
-    tags: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL', 'Sanity CMS', 'Tailwind CSS'],
+      'A server-side rendered lifestyle content platform serving multi-category articles across fashion, beauty, wellness, and art — powered by Contentful CMS, with Disqus comments, Instagram feed integration, and strong SEO out of the box.',
+    image: '/images/carina-collective.png',
+    tags: ['Angular', 'TypeScript', 'Angular Universal', 'Express.js', 'Contentful SDK', 'RxJS', 'Disqus', 'Bootstrap 4'],
     featured: true,
     status: 'live',
     problem:
-      'The collective was juggling Squarespace for their portfolio, Google Forms for inquiries, and manual invoicing via PayPal. This fragmented stack meant leads fell through the cracks and the booking experience felt unprofessional. A unified platform was needed to showcase work, capture qualified leads, collect booking deposits, and manage ongoing client relationships — all under one brand.',
+      'A lifestyle content creator needed a custom platform to publish multi-category content across fashion, beauty, wellness, and art — without the limitations of off-the-shelf blogging tools. The site needed strong SEO for content discovery, a smooth reading experience with rich-text rendering and comments, and a CMS workflow that kept the creator in control of content without developer involvement.',
     architecture: {
       mermaid: `graph TD
-    subgraph Frontend["Next.js App"]
-        A["Portfolio Pages<br/>(Static Generated)"]
-        B["Booking Flow<br/>(Client Component)"]
-        C["Blog<br/>(ISR-like via rebuild)"]
-    end
-    subgraph Backend["API Routes"]
-        D["Inquiry Handler"]
-        E["Stripe Webhook Handler"]
-    end
-    subgraph External["External Services"]
-        F["Stripe Payments"]
-        G["Sanity CMS"]
-        H["Resend (Email)"]
-    end
-    subgraph DB["Database"]
-        I[("PostgreSQL<br/>(Clients, Bookings)")]
-    end
-    A --> D
-    B --> F
-    F -->|"payment_intent.succeeded"| E
-    E --> I
-    E --> H
-    G --> A
-    G --> C`,
+    A["Contentful CMS"]
+    B["Angular Universal + Express.js"]
+    C["Article Pages"]
+    D["Category Views"]
+    E["Disqus Comments"]
+    F["Instagram Feed"]
+
+    A -->|"Contentful SDK"| B
+    B --> C
+    B --> D
+    C --> E
+    C --> F`,
       explanation:
-        'Portfolio pages and blog posts are statically generated from Sanity CMS at build time, keeping load times minimal. The booking flow is a client-side multi-step form that creates a Stripe Payment Intent and collects a deposit. Stripe webhooks hit a Route Handler to record confirmed bookings in PostgreSQL and trigger confirmation emails via Resend.',
+        'Angular Universal with Express.js handles server-side rendering, ensuring fully hydrated HTML is sent to the browser on first load — critical for SEO on content-heavy article pages. The Contentful SDK fetches article content, rich-text, and assets at request time. Disqus is embedded client-side for the comments system, and the Instagram feed is injected after hydration to keep SSR output clean.',
     },
     scale: {
       metrics: [
-        { label: 'Monthly Active Users', value: '~1.2K' },
-        { label: 'Avg. TTFB', value: '<120ms' },
-        { label: 'Stripe Success Rate', value: '99.6%' },
-        { label: 'Webhook p99 Latency', value: '<400ms' },
-        { label: 'Lighthouse Score', value: '96' },
-        { label: 'Booking Conversion', value: '↑ 2.4× vs. old flow' },
+        { label: 'Content Categories', value: '4' },
+        { label: 'Rendering', value: 'SSR' },
+        { label: 'CMS', value: 'Contentful' },
+        { label: 'Comments', value: 'Disqus' },
+        { label: 'SEO', value: 'Server-rendered' },
+        { label: 'Social', value: 'Instagram feed' },
       ],
       details:
-        'Stripe webhooks are idempotent — duplicate events are deduplicated by storing the Stripe event ID in PostgreSQL with a unique constraint. Email confirmations are sent asynchronously via Resend after the webhook handler returns 200, keeping webhook processing fast. All secrets are environment variables; the build artifact contains zero credentials.',
+        'SSR ensures search engines receive fully rendered HTML rather than a blank Angular shell — essential for a content-driven site where organic search is the primary traffic source. Rich-text from Contentful is rendered via the Contentful rich-text renderer, preserving formatting, embedded assets, and hyperlinks without custom parsing.',
     },
-    dataModel: `-- Booking & client schema
-CREATE TABLE clients (
-  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  email      TEXT UNIQUE NOT NULL,
-  name       TEXT NOT NULL,
-  phone      TEXT,
-  created_at TIMESTAMPTZ DEFAULT NOW()
-);
+    dataModel: [
+      {
+        label: 'Contentful CMS',
+        lang: 'graphql',
+        content: `type Image {
+  fileName: String!
+  url:      String!
+}
 
-CREATE TABLE bookings (
-  id                 UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  client_id          UUID REFERENCES clients(id),
-  service_type       TEXT NOT NULL,
-  event_date         DATE,
-  deposit_amount_usd INT NOT NULL,        -- in cents
-  status             TEXT CHECK (status IN ('pending', 'confirmed', 'completed', 'cancelled')),
-  stripe_payment_id  TEXT UNIQUE,         -- idempotency key
-  stripe_event_id    TEXT UNIQUE,         -- dedup webhook replays
-  notes              TEXT,
-  created_at         TIMESTAMPTZ DEFAULT NOW()
-);
+type Article {
+  title:       String!
+  slug:        String!
+  category:    String   # "fashion" | "beauty" | "wellness" | "art"
+  heroImage:   Image!
+  body:        RichText!
+  publishedAt: DateTime!
+  excerpt:     String
+  tags:        [String]
+  author:      Author
+}
 
-CREATE INDEX bookings_status_idx ON bookings(status);
-CREATE INDEX bookings_event_date_idx ON bookings(event_date);`,
+type Author {
+  name:            String!
+  bio:             String
+  photo:           Image
+  instagramHandle: String
+}
+
+type HomepageFeatured {
+  heroHeading:      String
+  heroSubheading:   String
+  featuredArticles: [Article]
+}`,
+      },
+    ],
   },
 ]
 

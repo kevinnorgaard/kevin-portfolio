@@ -19,8 +19,8 @@ const firaCode = Fira_Code({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Kevin Norgaard – Software Engineer',
-    template: '%s | Kevin Norgaard',
+    default: 'Kevin Z Norgaard – Software Engineer',
+    template: '%s | Kevin Z Norgaard',
   },
   description:
     'Software Engineer III specializing in high-traffic backend systems, distributed architecture, and AI integrations. Previously eBay & General Motors.',
@@ -33,21 +33,21 @@ export const metadata: Metadata = {
     'TypeScript',
     'Distributed Systems',
     'eBay',
-    'Kevin Norgaard',
+    'Kevin Z Norgaard',
   ],
-  authors: [{ name: 'Kevin Norgaard', url: 'https://kevinnorgaard.com' }],
+  authors: [{ name: 'Kevin Z Norgaard', url: 'https://kevinnorgaard.com' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://kevinnorgaard.com',
-    siteName: 'Kevin Norgaard',
-    title: 'Kevin Norgaard – Software Engineer',
+    siteName: 'Kevin Z Norgaard',
+    title: 'Kevin Z Norgaard – Software Engineer',
     description:
       'Software Engineer III specializing in high-traffic backend systems, distributed architecture, and AI integrations.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kevin Norgaard – Software Engineer',
+    title: 'Kevin Z Norgaard – Software Engineer',
     description:
       'Software Engineer III specializing in high-traffic backend systems, distributed architecture, and AI integrations.',
   },
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
       <body className="min-h-screen flex flex-col">
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pt-16">{children}</main>
         <Footer />
       </body>
     </html>

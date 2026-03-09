@@ -2,33 +2,28 @@ import type { SkillCategory } from './types'
 
 export const skills: SkillCategory[] = [
   {
-    category: 'Backend',
-    icon: '⚙️',
-    items: ['Java', 'Spring Boot', 'Python', 'Node.js', 'REST APIs', 'GraphQL', 'gRPC', 'Kafka', 'Microservices'],
+    category: 'Languages',
+    icon: '{}',
+    items: ['Java', 'Python', 'TypeScript', 'JavaScript', 'SQL'],
   },
   {
-    category: 'Frontend',
-    icon: '🖥️',
-    items: ['TypeScript', 'React', 'Next.js', 'Tailwind CSS', 'HTML/CSS', 'Zustand', 'React Query'],
+    category: 'Frameworks & Testing',
+    icon: '🔩',
+    items: ['Spring Boot', 'Angular', 'Spring AOP', 'Hibernate', 'JUnit', 'TestNG', 'Karate', 'Playwright'],
   },
   {
-    category: 'Data & Storage',
-    icon: '🗄️',
-    items: ['PostgreSQL', 'MySQL', 'Redis', 'Elasticsearch', 'MongoDB', 'S3', 'DynamoDB'],
-  },
-  {
-    category: 'Infrastructure',
-    icon: '☁️',
-    items: ['AWS (EC2, S3, Lambda, ECS)', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'Nginx'],
-  },
-  {
-    category: 'Observability',
-    icon: '📊',
-    items: ['DataDog', 'Splunk', 'OpenTelemetry', 'Prometheus', 'Grafana', 'PagerDuty'],
-  },
-  {
-    category: 'AI & ML',
+    category: 'AI & Automation',
     icon: '🤖',
-    items: ['LangChain', 'OpenAI API', 'Prompt Engineering', 'Vector DBs (Pinecone)', 'RAG Pipelines', 'Fine-tuning'],
+    items: ['Prompt Engineering', 'MCP', 'Claude Code', 'Gemini CLI', 'Cline', 'n8n'],
+  },
+  {
+    category: 'Infrastructure & Tools',
+    icon: '🛠️',
+    items: ['AWS', 'GCP', 'Kubernetes', 'Docker', 'Kafka', 'Jenkins', 'Grafana', 'Kibana'],
+  },
+  {
+    category: 'Databases',
+    icon: '💾',
+    items: ['Cassandra', 'Memcached', 'MongoDB', 'MySQL'],
   },
 ]

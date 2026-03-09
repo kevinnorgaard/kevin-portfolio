@@ -44,7 +44,7 @@ const config: Config = {
       },
       backgroundImage: {
         'mesh-gradient':
-          'radial-gradient(ellipse at 15% 15%, rgba(242, 132, 130, 0.18) 0%, transparent 55%), radial-gradient(ellipse at 85% 85%, rgba(132, 165, 157, 0.18) 0%, transparent 55%), radial-gradient(ellipse at 50% 110%, rgba(132, 165, 157, 0.10) 0%, transparent 50%)',
+          'radial-gradient(ellipse at 15% 15%, rgba(132, 165, 157, 0.18) 0%, transparent 55%), radial-gradient(ellipse at 85% 85%, rgba(242, 132, 130, 0.18) 0%, transparent 55%), radial-gradient(ellipse at 50% 110%, rgba(242, 132, 130, 0.10) 0%, transparent 50%)',
       },
     },
   },

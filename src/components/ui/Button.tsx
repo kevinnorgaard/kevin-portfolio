@@ -18,16 +18,16 @@ type Props = ButtonProps | AnchorProps
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    'bg-salmon text-white hover:bg-salmon-dark shadow-sm focus:ring-salmon/50',
+    'bg-teal text-white hover:bg-teal-dark shadow-sm focus:ring-teal/50',
   secondary:
-    'bg-white/40 backdrop-blur-md border border-white/60 text-dark-slate hover:bg-white/60 focus:ring-dark-slate/20',
-  ghost: 'text-dark-slate/70 hover:text-salmon hover:bg-white/30 focus:ring-dark-slate/10',
+    'bg-transparent border border-dark-slate/25 text-dark-slate hover:border-dark-slate/50 focus:ring-dark-slate/20',
+  ghost: 'text-dark-slate hover:text-salmon hover:bg-white/30 focus:ring-dark-slate/10',
 }
 
 const sizeClasses: Record<Size, string> = {
-  sm: 'px-4 py-2 text-xs rounded-lg gap-1.5',
-  md: 'px-6 py-3 text-sm rounded-xl gap-2',
-  lg: 'px-8 py-4 text-base rounded-xl gap-2',
+  sm: 'px-5 py-2 text-xs rounded-xl gap-1.5',
+  md: 'px-7 py-2.5 text-sm rounded-xl gap-2',
+  lg: 'px-8 py-3.5 text-base rounded-xl gap-2',
 }
 
 const base =

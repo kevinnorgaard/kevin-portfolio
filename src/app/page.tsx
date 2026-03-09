@@ -8,10 +8,15 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <FeaturedProjects />
-      <SkillsSnapshot />
-      <ExperiencePreview />
-      <ContactSection />
+      {/* Spacer to push content below the fixed hero */}
+      <div className="h-dvh" aria-hidden="true" />
+      {/* Content slides over the hero */}
+      <div className="relative z-10 parallax-content rounded-t-3xl shadow-[0_-20px_60px_rgba(0,0,0,0.08)]">
+        <FeaturedProjects />
+        <SkillsSnapshot />
+        <ExperiencePreview />
+        <ContactSection />
+      </div>
     </>
   )
 }

@@ -38,7 +38,9 @@ export default function MermaidDiagram({ chart, className }: MermaidDiagramProps
           },
           flowchart: {
             curve: 'basis',
-            padding: 20,
+            padding: 24,
+            nodeSpacing: 40,
+            rankSpacing: 50,
           },
         })
 

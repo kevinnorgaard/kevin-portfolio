@@ -17,6 +17,7 @@ export interface Project {
   slug: string
   name: string
   liveUrl: string
+  githubUrl?: string
   tagline: string
   summary: string
   tags: string[]
@@ -27,7 +28,7 @@ export interface Project {
   problem: string
   architecture: ProjectArchitecture
   scale: ProjectScale
-  dataModel: string
+  dataModel: { label: string; lang: string; content: string }[]
 }
 
 export interface ExperienceBullet {
@@ -43,6 +44,7 @@ export interface Experience {
   bullets: string[]
   tags: string[]
   current?: boolean
+  promoted?: boolean // true if this role was a promotion at the same company
 }
 
 export interface SkillCategory {

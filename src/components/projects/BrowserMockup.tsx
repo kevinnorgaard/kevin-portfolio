@@ -49,7 +49,7 @@ export default function BrowserMockup({ url, children, className }: BrowserMocku
       </div>
 
       {/* Viewport */}
-      <div className="relative aspect-video bg-off-white overflow-hidden">
+      <div className="relative bg-off-white overflow-hidden">
         {children}
       </div>
     </div>
