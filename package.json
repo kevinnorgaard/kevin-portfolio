@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "npm run build && rsync -avz --delete -e 'ssh -p 21098' out/ ainecmrx@67.223.118.183:~/kevinnorgaard.com/"
   },
   "dependencies": {
+    "@next/third-parties": "^16.1.6",
     "clsx": "^2.1.1",
     "mermaid": "^10.9.1",
     "next": "^14.2.5",
