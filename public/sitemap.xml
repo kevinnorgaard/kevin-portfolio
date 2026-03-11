@@ -9,6 +9,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://kevinnorgaard.com/projects/ai-fitness-coach/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://kevinnorgaard.com/projects/uci-phi-psi/</loc>
     <priority>0.7</priority>
   </url>
