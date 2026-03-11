@@ -137,7 +137,7 @@ export const projects: Project[] = [
   {
     slug: 'uci-phi-psi',
     name: 'UCI Phi Kappa Psi Website',
-    liveUrl: 'https://www.uciphipsi.kevinnorgaard.com',
+    liveUrl: 'https://uciphipsi.kevinnorgaard.com',
     githubUrl: 'https://github.com/kevinnorgaard/pkp',
     tagline: 'Full-stack fraternity chapter website built with Angular, Firebase, and Hygraph CMS',
     summary:
@@ -234,7 +234,7 @@ type MembershipPage {
   {
     slug: 'uci-sba',
     name: 'UCI Sports Business Association Website',
-    liveUrl: 'https://www.ucisba.kevinnorgaard.com',
+    liveUrl: 'https://ucisba.kevinnorgaard.com',
     tagline: 'Student org website for the UC Irvine Sports Business Association, powered by Contentful CMS',
     summary:
       'An Angular SPA with a centralized Contentful-driven content layer — featuring an interactive FullCalendar event calendar, exec board and alumni directory profiles, toggleable speaker archives, and Mailchimp newsletter integration. Officers update all content without redeployment.',
@@ -323,7 +323,7 @@ type HomepageSection {
   {
     slug: 'carina-collective',
     name: 'Lifestyle Blog Platform',
-    liveUrl: 'https://www.carinacollective.kevinnorgaard.com',
+    liveUrl: 'https://carinacollective.kevinnorgaard.com',
     githubUrl: 'https://github.com/kevinnorgaard/contentful-blog',
     tagline: 'Full-stack blog platform with SSR built with Angular Universal and Contentful',
     summary:
