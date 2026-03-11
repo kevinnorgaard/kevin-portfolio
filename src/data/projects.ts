@@ -40,27 +40,95 @@ export const projects: Project[] = [
     },
     dataModel: [
       {
-        label: 'Google Calendar Event Schema',
-        lang: 'yaml',
-        content: `event:
-  title: "[LIFT] Upper #1 — Bench Focus"
-  date: DateTime
-  description:
-    intention:   string  # session goal
-    warmup:
-      - exercise: string
-        sets:     "sets x reps @ weight"
-    working:
-      - exercise: string
-        planned:  "sets x reps @ weight (RIR target)"
-        actual:   "sets x reps @ weight"
-        notes:    string
-    cooldown:     string
-    readiness:
-      hrv:        number
-      rhr:        number
-      sleep:      string
-      trainingLoad: string`,
+        label: 'Strava MCP Tools',
+        lang: 'json',
+        content: `{
+  "tools": [
+    {
+      "name": "get_strava_activities",
+      "description": "Get the last 30 Strava activities. Provides high-level summaries. Use get_strava_activity_by_id for full details.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_strava_activity_by_id",
+      "description": "Get a Strava activity by ID. Returns full details including heart rate, best efforts by segment, etc.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "activity id"
+          }
+        },
+        "required": ["id"]
+      }
+    }
+  ]
+}`,
+      },
+      {
+        label: 'Google Calendar MCP Tools',
+        lang: 'json',
+        content: `{
+  "tools": [
+    {
+      "name": "calendar_listEvents",
+      "description": "Get many events in Google Calendar",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "Limit": { "type": "number" },
+          "After": { "type": "string" },
+          "Before": { "type": "string" }
+        },
+        "required": ["Limit", "After", "Before"]
+      }
+    },
+    {
+      "name": "calendar_getEvent",
+      "description": "Get an event in Google Calendar",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "Event_ID": { "type": "string" }
+        },
+        "required": ["Event_ID"]
+      }
+    },
+    {
+      "name": "calendar_createEvent",
+      "description": "Create an event in Google Calendar",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "Start": { "type": "string" },
+          "End": { "type": "string" },
+          "event_title": { "type": "string" },
+          "event_description": { "type": "string" }
+        },
+        "required": ["Start", "End", "event_title", "event_description"]
+      }
+    },
+    {
+      "name": "calendar_updateEvent",
+      "description": "Update an event in Google Calendar",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "Event_ID": { "type": "string" },
+          "Start": { "type": "string" },
+          "End": { "type": "string" },
+          "event_title": { "type": "string" },
+          "event_description": { "type": "string" }
+        },
+        "required": ["Event_ID", "Start", "End", "event_title", "event_description"]
+      }
+    }
+  ]
+}`,
       },
     ],
   },
