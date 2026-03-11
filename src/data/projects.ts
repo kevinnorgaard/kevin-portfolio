@@ -2,6 +2,71 @@ import type { Project } from './types'
 
 export const projects: Project[] = [
   {
+    slug: 'ai-fitness-coach',
+    name: 'AI Fitness Coach',
+    liveUrl: 'https://youtu.be/lWX_sNq0rns',
+    githubUrl: 'https://github.com/kevinnorgaard/ai-fitness-coach',
+    tagline: 'AI-powered strength & running coach using Claude, Strava, and Google Calendar via MCP',
+    summary:
+      'A personalized fitness coaching system powered by Claude AI that automatically reviews Strava activity data and Google Calendar history to plan, adjust, and log hypertrophy/strength workouts and running sessions. Uses MCP servers hosted in n8n to connect Claude Code to real-time fitness and scheduling APIs.',
+    video: 'lWX_sNq0rns',
+    tags: ['Claude AI', 'MCP', 'n8n', 'Strava API', 'Google Calendar API', 'Docker'],
+    featured: true,
+    status: 'live',
+    problem:
+      'Maintaining a structured 5-day upper/lower strength split alongside a running program requires constant manual tracking — logging sets, monitoring progression, adjusting for readiness, and coordinating schedules. Traditional fitness apps lack the intelligence to dynamically adapt workouts based on real performance data, recovery signals, and calendar constraints.',
+    architecture: {
+      mermaid: `graph TD
+    A["Claude Code CLI"] -->|"MCP Protocol"| B["n8n (Docker)"]
+    B --> C["Strava MCP Server"]
+    B --> D["Google Calendar MCP Server"]
+    C -->|"Activities, HR, Metrics"| E["Strava API"]
+    D -->|"Schedule & History"| F["Google Calendar API"]
+    A -->|"Reads"| G["Workout Program (XLSX/CSV)"]`,
+      explanation:
+        'Claude Code acts as the coaching agent, reading the workout program spreadsheet as ground truth and connecting to two MCP servers hosted in an n8n Docker container. The Strava MCP server fetches activity data, heart rate, and performance metrics from the Strava API. The Google Calendar MCP server reads past workout events to track progression and creates new scheduled sessions. Claude applies progression logic, readiness adjustments, and periodization rules to generate and log each workout.',
+    },
+    scale: {
+      metrics: [
+        { label: 'Training Split', value: '5-day U/L' },
+        { label: 'MCP Servers', value: '2' },
+        { label: 'Run Target', value: '10+ mi/wk' },
+        { label: 'Progression', value: 'Auto' },
+        { label: 'Data Sources', value: 'Strava + GCal' },
+        { label: 'Coaching Agent', value: 'Claude AI' },
+      ],
+      details:
+        'The system manages a 5-day upper/lower hypertrophy split (Bench, Squat, OHP, Hinge, Accessories) plus running sessions targeting 10+ miles per week. Progression is automatic — Claude adds reps first, then weight (2.5–5% increments) based on logged performance. Readiness metrics (HRV, sleep, RHR) adjust intensity per session.',
+    },
+    dataModel: [
+      {
+        label: 'Google Calendar Event Schema',
+        lang: 'yaml',
+        content: `event:
+  title: "[LIFT] Upper #1 — Bench Focus"
+  date: DateTime
+  description:
+    intention:   string  # session goal
+    warmup:
+      - exercise: string
+        sets:     "sets x reps @ weight"
+    working:
+      - exercise: string
+        planned:  "sets x reps @ weight (RIR target)"
+        actual:   "sets x reps @ weight"
+        notes:    string
+    cooldown:     string
+    readiness:
+      hrv:        number
+      rhr:        number
+      sleep:      string
+      trainingLoad: string`,
+      },
+    ],
+  },
+
+
+  {
     slug: 'uci-phi-psi',
     name: 'UCI Phi Kappa Psi Website',
     liveUrl: 'https://www.uciphipsi.kevinnorgaard.com',

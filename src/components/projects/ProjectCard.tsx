@@ -29,9 +29,9 @@ export default function ProjectCard({ project, maxTags = 4 }: ProjectCardProps) 
             <span className="w-2.5 h-2.5 rounded-full bg-green-300/70" />
           </div>
 
-          {project.image ? (
+          {project.image || project.video ? (
             <img
-              src={project.image}
+              src={project.image || `https://img.youtube.com/vi/${project.video}/maxresdefault.jpg`}
               alt={`${project.name} screenshot`}
               className="w-full h-full object-cover object-top"
             />
@@ -41,6 +41,15 @@ export default function ProjectCard({ project, maxTags = 4 }: ProjectCardProps) 
             </div>
           )}
 
+          {project.video && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-12 h-12 rounded-full bg-dark-slate/60 backdrop-blur-sm flex items-center justify-center group-hover:bg-salmon/80 transition-colors duration-200">
+                <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
+          )}
           <div className="absolute inset-0 bg-salmon/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
 
@@ -90,7 +99,7 @@ export default function ProjectCard({ project, maxTags = 4 }: ProjectCardProps) 
                          hover:-translate-y-0.5 motion-reduce:hover:translate-y-0"
               aria-label={`Open ${project.name} live app in new tab`}
             >
-              View Live App ↗
+              {project.video ? 'Watch Demo ↗' : 'View Live App ↗'}
             </a>
           </div>
         </div>

@@ -70,7 +70,7 @@ export default function ProjectDetailPage({ params }: Props) {
                            hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-salmon/50
                            motion-reduce:hover:translate-y-0 whitespace-nowrap"
               >
-                View Live App ↗
+                {project.video ? 'Watch Demo ↗' : 'View Live App ↗'}
               </a>
               {project.githubUrl && (
                 <a
@@ -102,22 +102,36 @@ export default function ProjectDetailPage({ params }: Props) {
         </div>
 
         {/* Browser mockup */}
-        <BrowserMockup url={project.liveUrl.replace('https://', '')} className="mb-16">
-          {project.image ? (
-            <img
-              src={project.image}
-              alt={`${project.name} screenshot`}
-              className="w-full h-auto block"
-            />
-          ) : (
-            <div className="aspect-video bg-gradient-to-br from-salmon/8 via-off-white to-teal/8 flex items-center justify-center">
-              <div className="text-center p-8">
-                <p className="text-8xl font-black text-dark-slate/5 select-none">{project.name}</p>
-                <p className="mt-4 text-dark-slate/30 text-sm">Add a screenshot or video here.</p>
-              </div>
+        {project.video ? (
+          <div className="mb-16 rounded-xl overflow-hidden border border-white/60 shadow-xl bg-white/20 backdrop-blur-sm">
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                src={`https://www.youtube.com/embed/${project.video}?rel=0`}
+                title={`${project.name} demo video`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
             </div>
-          )}
-        </BrowserMockup>
+          </div>
+        ) : (
+          <BrowserMockup url={project.liveUrl.replace('https://', '')} className="mb-16">
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={`${project.name} screenshot`}
+                className="w-full h-auto block"
+              />
+            ) : (
+              <div className="aspect-video bg-gradient-to-br from-salmon/8 via-off-white to-teal/8 flex items-center justify-center">
+                <div className="text-center p-8">
+                  <p className="text-8xl font-black text-dark-slate/5 select-none">{project.name}</p>
+                  <p className="mt-4 text-dark-slate/30 text-sm">Add a screenshot or video here.</p>
+                </div>
+              </div>
+            )}
+          </BrowserMockup>
+        )}
 
         {/* Content */}
         <div className="space-y-10">
