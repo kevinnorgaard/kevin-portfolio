@@ -35,8 +35,36 @@ export default function ProjectDetailPage({ params }: Props) {
   const project = getProjectBySlug(params.slug)
   if (!project) notFound()
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareSourceCode',
+    name: project.name,
+    description: project.summary,
+    url: `https://kevinnorgaard.com/projects/${project.slug}/`,
+    ...(project.githubUrl && { codeRepository: project.githubUrl }),
+    programmingLanguage: project.tags,
+    author: {
+      '@type': 'Person',
+      name: 'Kevin Z Norgaard',
+      url: 'https://kevinnorgaard.com',
+    },
+    ...(project.video && {
+      video: {
+        '@type': 'VideoObject',
+        name: `${project.name} Demo`,
+        description: project.tagline,
+        embedUrl: `https://www.youtube.com/embed/${project.video}`,
+        thumbnailUrl: `https://img.youtube.com/vi/${project.video}/maxresdefault.jpg`,
+      },
+    }),
+  }
+
   return (
     <div className="py-16 sm:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="section-container">
 
         {/* Breadcrumb */}
