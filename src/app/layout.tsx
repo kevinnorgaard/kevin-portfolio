@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: '%s | Kevin Z Norgaard',
   },
   description:
-    'Software Engineer III specializing in high-traffic backend systems, distributed architecture, and AI integrations. Previously eBay & General Motors.',
+    'Portfolio of Kevin Z Norgaard — software engineer building scalable backend systems and AI integrations at eBay. Projects, experience, and skills.',
   keywords: [
     'Software Engineer',
     'Backend Engineer',
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
     siteName: 'Kevin Z Norgaard',
     title: 'Kevin Z Norgaard – Software Engineer',
     description:
-      'Software Engineer III specializing in high-traffic backend systems, distributed architecture, and AI integrations.',
+      'Portfolio of Kevin Z Norgaard — software engineer building scalable backend systems and AI integrations at eBay. Projects, experience, and skills.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Kevin Z Norgaard – Software Engineer',
     description:
-      'Software Engineer III specializing in high-traffic backend systems, distributed architecture, and AI integrations.',
+      'Portfolio of Kevin Z Norgaard — software engineer building scalable backend systems and AI integrations at eBay. Projects, experience, and skills.',
   },
   metadataBase: new URL('https://kevinnorgaard.com'),
   robots: {
