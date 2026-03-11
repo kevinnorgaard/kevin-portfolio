@@ -25,7 +25,7 @@ export default function GlassCard({
       className={clsx(
         'rounded-2xl bg-white/40 backdrop-blur-md border border-white/60 shadow-sm',
         hover &&
-          'transition-all duration-300 ease-out hover:bg-white/55 hover:shadow-md hover:-translate-y-1 motion-reduce:hover:translate-y-0 motion-reduce:transition-none cursor-pointer',
+          'transition-all duration-300 ease-out hover:bg-white/55 hover:shadow-md motion-reduce:transition-none cursor-pointer',
         paddingMap[padding],
         className,
       )}

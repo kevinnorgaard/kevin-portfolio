@@ -14,7 +14,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, maxTags = 4 }: ProjectCardProps) {
   return (
     // `relative` + `group` on the card itself (not the Link) — no nested <a>
-    <div className="relative group outline-none focus-within:ring-2 focus-within:ring-salmon/50 rounded-2xl">
+    <div className="relative group outline-none focus-within:ring-2 focus-within:ring-salmon/50 rounded-2xl transition-transform duration-300 ease-out hover:-translate-y-1 motion-reduce:hover:translate-y-0">
       <GlassCard
         hover
         padding="none"
@@ -71,7 +71,7 @@ export default function ProjectCard({ project, maxTags = 4 }: ProjectCardProps) 
             </h3>
           </div>
 
-          <p className="text-dark-slate/60 text-sm leading-relaxed flex-1 line-clamp-3">
+          <p className="text-dark-slate/60 text-sm sm:text-base leading-relaxed flex-1 line-clamp-3">
             {project.tagline}
           </p>
 
@@ -94,9 +94,10 @@ export default function ProjectCard({ project, maxTags = 4 }: ProjectCardProps) 
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative z-10 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-salmon text-white
-                         text-xs font-semibold shadow-sm hover:bg-salmon-dark transition-all duration-200
+              className="relative z-10 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-white
+                         text-xs font-semibold shadow-sm hover:opacity-90 transition-all duration-200
                          hover:-translate-y-0.5 motion-reduce:hover:translate-y-0"
+              style={{ background: 'linear-gradient(90deg, #fca5a5, #f87171)' }}
               aria-label={`Open ${project.name} live app in new tab`}
             >
               {project.video ? 'Watch Demo ↗' : 'View Live App ↗'}

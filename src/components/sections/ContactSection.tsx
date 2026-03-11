@@ -38,10 +38,11 @@ export default function ContactSection() {
 
               <a
                 href="mailto:kevinnorg@gmail.com"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-salmon text-white
-                           font-semibold text-sm shadow-sm hover:bg-salmon-dark transition-all duration-200
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white
+                           font-semibold text-sm shadow-sm hover:opacity-90 transition-all duration-200
                            hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-salmon/50
                            motion-reduce:hover:translate-y-0"
+                style={{ background: 'linear-gradient(90deg, #fca5a5, #f87171)' }}
               >
                 <span aria-hidden="true">✉️</span>
                 Send an Email

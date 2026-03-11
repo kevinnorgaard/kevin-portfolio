@@ -70,7 +70,7 @@ export default function Nav() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-sans font-bold text-xl tracking-normal text-dark-slate hover:opacity-80 transition-opacity"
+            className="font-sans font-bold text-xl tracking-[-0.08em] text-dark-slate hover:opacity-80 transition-opacity"
             aria-label="Kevin Norgaard – Home"
           >
             <span className="text-salmon">{'<'}</span>
@@ -98,7 +98,7 @@ export default function Nav() {
               href={RESUME_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-3 px-5 py-2.5 rounded-xl text-white text-[15.2px] font-medium
+              className="ml-3 px-5 py-2.5 rounded-xl text-white text-sm font-medium
                          transition-all duration-200 shadow-sm hover:opacity-90 inline-flex items-center gap-1.5"
               style={{ background: 'linear-gradient(90deg, #fca5a5, #f87171)' }}
             >

@@ -94,19 +94,19 @@ export default function Hero() {
           {/* Quick Facts */}
           <dl className="mt-4 sm:mt-6 glass-card p-3 sm:p-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-3 sm:gap-y-4 max-w-2xl animate-slide-up-delay opacity-0">
             <div className="flex flex-col items-center justify-center">
-              <dt className="font-mono text-[10px] text-dark-slate/40 uppercase tracking-widest">Background</dt>
+              <dt className="font-mono text-xs text-dark-slate/40 uppercase tracking-widest">Background</dt>
               <dd className="mt-0.5 text-xs sm:text-sm font-bold text-dark-slate/80">Software Engineer III @ eBay</dd>
             </div>
             <div className="flex flex-col items-center justify-center">
-              <dt className="font-mono text-[10px] text-dark-slate/40 uppercase tracking-widest">Experience</dt>
+              <dt className="font-mono text-xs text-dark-slate/40 uppercase tracking-widest">Experience</dt>
               <dd className="mt-0.5 text-xs sm:text-sm font-bold text-dark-slate/80">6 Years</dd>
             </div>
             <div className="flex flex-col items-center justify-center">
-              <dt className="font-mono text-[10px] text-dark-slate/40 uppercase tracking-widest">Location</dt>
+              <dt className="font-mono text-xs text-dark-slate/40 uppercase tracking-widest">Location</dt>
               <dd className="mt-1 text-xs sm:text-sm font-bold text-dark-slate/80 leading-snug">Brooklyn, NY<br />Open to CA / Remote</dd>
             </div>
             <div className="flex flex-col items-center justify-center">
-              <dt className="font-mono text-[10px] text-dark-slate/40 uppercase tracking-widest">Education</dt>
+              <dt className="font-mono text-xs text-dark-slate/40 uppercase tracking-widest">Education</dt>
               <dd className="mt-1 text-xs sm:text-sm font-bold text-dark-slate/80 leading-snug">B.S. Computer Science<br />& Engineering, UC Irvine</dd>
             </div>
           </dl>
@@ -121,7 +121,7 @@ export default function Hero() {
         className="relative z-10 pb-4 sm:pb-8 flex flex-col items-center gap-1"
         style={{ opacity: 0 }}
       >
-        <span className="text-[11px] font-mono text-dark-slate/50 tracking-wide">Scroll to explore</span>
+        <span className="text-xs font-mono text-dark-slate/50 tracking-wide">Scroll to explore</span>
         <svg
           className="w-5 h-5 text-dark-slate/45 animate-bounce"
           fill="none"
