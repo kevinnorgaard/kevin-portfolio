@@ -44,12 +44,14 @@ export const metadata: Metadata = {
     title: 'Kevin Z Norgaard – Software Engineer',
     description:
       'Portfolio of Kevin Z Norgaard — software engineer building scalable backend systems and AI integrations at eBay. Projects, experience, and skills.',
+    images: [{ url: '/images/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Kevin Z Norgaard – Software Engineer',
     description:
       'Portfolio of Kevin Z Norgaard — software engineer building scalable backend systems and AI integrations at eBay. Projects, experience, and skills.',
+    images: ['/images/og-image.png'],
   },
   metadataBase: new URL('https://kevinnorgaard.com'),
   robots: {
