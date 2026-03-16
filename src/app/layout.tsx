@@ -102,6 +102,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }),
           }}
         />
+        <script src="https://pulse.kevinnorgaard.com/tracker.js" data-site="kevin-portfolio" defer />
       </head>
       <body className="min-h-screen flex flex-col">
         <noscript>
