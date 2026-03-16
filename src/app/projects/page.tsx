@@ -6,6 +6,9 @@ import ProjectCard from '@/components/projects/ProjectCard'
 export const metadata: Metadata = {
   title: 'Projects',
   description: 'Full-stack and backend projects by Kevin Z Norgaard.',
+  alternates: {
+    canonical: '/projects/',
+  },
 }
 
 export default function ProjectsPage() {

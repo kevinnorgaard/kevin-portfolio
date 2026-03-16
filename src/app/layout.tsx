@@ -54,6 +54,9 @@ export const metadata: Metadata = {
     images: ['/images/og-image.png'],
   },
   metadataBase: new URL('https://kevinnorgaard.com'),
+  alternates: {
+    canonical: '/',
+  },
   robots: {
     index: true,
     follow: true,
