@@ -7,10 +7,11 @@ Personal portfolio site for [kevinnorgaard.com](https://kevinnorgaard.com). Buil
 | Layer | Choice |
 |---|---|
 | Runtime | Node.js 20 |
-| Framework | Next.js 14 (App Router) |
+| Framework | Next.js 16 (App Router + Turbopack) |
 | Language | TypeScript |
 | Styling | Tailwind CSS |
-| Fonts | Inter + Fira Code (Google Fonts) |
+| UI | React 19 |
+| Fonts | Inter + JetBrains Mono (Google Fonts) |
 | Syntax highlighting | Shiki (server-side) |
 | Architecture diagrams | Mermaid.js (client-side) |
 | Hosting | Namecheap cPanel (static HTML) |
