@@ -9,7 +9,7 @@ import MermaidDiagram from '@/components/projects/MermaidDiagram'
 import CodeBlock from '@/components/projects/CodeBlock'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export function generateStaticParams() {
@@ -17,7 +17,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = getProjectBySlug(params.slug)
+  const { slug } = await params
+  const project = getProjectBySlug(slug)
   if (!project) return {}
   return {
     title: project.name,
@@ -34,8 +35,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function ProjectDetailPage({ params }: Props) {
-  const project = getProjectBySlug(params.slug)
+export default async function ProjectDetailPage({ params }: Props) {
+  const { slug } = await params
+  const project = getProjectBySlug(slug)
   if (!project) notFound()
 
   const jsonLd = {

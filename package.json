@@ -11,20 +11,20 @@
     "screenshots": "node scripts/screenshots.mjs"
   },
   "dependencies": {
-    "@next/third-parties": "^16.1.6",
+    "@next/third-parties": "^15.5.13",
     "clsx": "^2.1.1",
     "mermaid": "^10.9.1",
-    "next": "^14.2.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "next": "^15.5.13",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "shiki": "^4.0.1",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
