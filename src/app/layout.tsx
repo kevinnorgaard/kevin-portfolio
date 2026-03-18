@@ -57,6 +57,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: '/icon.svg',
+  },
   robots: {
     index: true,
     follow: true,
