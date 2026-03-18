@@ -2,11 +2,81 @@ import type { Project } from './types'
 
 export const projects: Project[] = [
   {
+    slug: 'pulse',
+    name: 'Pulse Analytics',
+    liveUrl: 'https://pulse.kevinnorgaard.com/?mock=true',
+    // githubUrl: 'https://github.com/kevinnorgaard/pulse',
+    tagline: 'Custom analytics dashboard tracking pageviews, clicks, and full user journeys across multiple sites',
+    period: '2025',
+    summary:
+      'A lightweight analytics platform built as an alternative to Google Analytics — designed to track pageviews, clicks, scroll depth, and session timelines across multiple sites without cookies or third-party scripts. Features real-time user journey visualization, cross-subdomain session stitching, geographic breakdowns, and a first-party tracker that works even when ad blockers are active.',
+    image: '/images/pulse.png',
+    detailImage: '/images/pulse-detail.png',
+    tags: ['Next.js', 'TypeScript', 'Supabase', 'Vercel', 'Tailwind CSS', 'PostgreSQL'],
+    featured: true,
+    status: 'live',
+    problem:
+      'Google Analytics is bloated, privacy-invasive, and blocked by most ad blockers — meaning traffic data for personal projects is incomplete and unreliable. I needed a lightweight, self-hosted analytics tool that could track real user behavior across multiple subdomains (portfolio, project sites) with full session-level detail, without relying on third-party cookies or scripts that get blocked.',
+    architecture: {
+      mermaid: `graph TD
+    A["Tracked Sites"] -->|"First-party JS"| B["Pulse Tracker (tracker.js)"]
+    B -->|"POST /api/track"| C["Next.js API Route"]
+    C -->|"Geo headers"| D["Vercel Edge"]
+    C -->|"Insert"| E["Supabase (PostgreSQL)"]
+    F["Dashboard (Next.js)"] -->|"Query"| E
+    F -->|"Auth"| G["iron-session"]`,
+      explanation:
+        'A lightweight first-party tracker script (< 4 KB) is embedded on each site and sends events (pageviews, clicks, scrolls, time-on-page) to the Pulse API. The API route enriches events with geo data from Vercel edge headers (country, region, city) and device metadata, then inserts into Supabase. The dashboard queries Supabase to render metrics, charts, geographic breakdowns, and full session-level user journey timelines with cross-subdomain stitching.',
+    },
+    scale: {
+      metrics: [
+        { label: 'Sites Tracked', value: '4' },
+        { label: 'Tracker Size', value: '< 4 KB' },
+        { label: 'Event Types', value: '6' },
+        { label: 'Session Replay', value: 'Timeline' },
+        { label: 'Cross-domain', value: 'Cookie-based' },
+        { label: 'Data Retention', value: '90 days' },
+      ],
+      details:
+        'The tracker captures 6 event types (pageview, click, scroll, time_on_page, dead_click, rage_click) and uses a shared first-party cookie across subdomains for cross-site session stitching. Session timelines visualize the full user journey — page navigations, clicks, scroll milestones, and away gaps — with color-coded nodes per site. Events auto-expire after 90 days via a pg_cron job.',
+    },
+    dataModel: [
+      {
+        label: 'Supabase Events Table',
+        lang: 'sql',
+        content: `CREATE TABLE events (
+  id            UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  site_id       TEXT NOT NULL,
+  visitor_id    TEXT NOT NULL,
+  session_id    TEXT NOT NULL,
+  event_type    TEXT NOT NULL,        -- pageview | click | scroll | time_on_page | dead_click | rage_click
+  timestamp     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  url           TEXT,
+  title         TEXT,
+  referrer      TEXT,
+  scroll_depth  SMALLINT,
+  element_text  TEXT,
+  element_href  TEXT,
+  active_time   INTEGER,              -- ms spent on page
+  click_count   SMALLINT,             -- for rage clicks
+  country       TEXT,
+  region        TEXT,
+  city          TEXT,
+  device_type   TEXT,
+  browser       TEXT,
+  os            TEXT
+);`,
+      },
+    ],
+  },
+
+  {
     slug: 'ai-fitness-coach',
     name: 'AI Fitness Coach',
     liveUrl: 'https://youtu.be/lWX_sNq0rns',
     githubUrl: 'https://github.com/kevinnorgaard/ai-fitness-coach',
     tagline: 'AI-powered strength & running coach using Claude, Strava, and Google Calendar via MCP',
+    period: '2025',
     summary:
       'A personalized fitness coaching system powered by Claude AI that automatically reviews Strava activity data and Google Calendar history to plan, adjust, and log hypertrophy/strength workouts and running sessions. Uses MCP servers hosted in n8n to connect Claude Code to real-time fitness and scheduling APIs.',
     video: 'lWX_sNq0rns',
@@ -140,6 +210,7 @@ export const projects: Project[] = [
     liveUrl: 'https://uciphipsi.kevinnorgaard.com',
     githubUrl: 'https://github.com/kevinnorgaard/pkp',
     tagline: 'Full-stack fraternity chapter website built with Angular, Firebase, and Hygraph CMS',
+    period: '2018 – 2022',
     summary:
       'A full-stack platform serving recruits, active members, and alumni — with CMS-driven exec board and leadership history profiles, a recruitment interest form and event check-in flow, per-event attendance tracking, composite photo galleries, and a password-protected admin dashboard. Collected 250+ PNM contacts and 150+ alumni profiles within two years.',
     image: '/images/uci-phi-psi.png',
@@ -236,6 +307,7 @@ type MembershipPage {
     name: 'UCI Sports Business Association Website',
     liveUrl: 'https://ucisba.kevinnorgaard.com',
     tagline: 'Student org website for the UC Irvine Sports Business Association, powered by Contentful CMS',
+    period: '2020 – 2021',
     summary:
       'An Angular SPA with a centralized Contentful-driven content layer — featuring an interactive FullCalendar event calendar, exec board and alumni directory profiles, toggleable speaker archives, and Mailchimp newsletter integration. Officers update all content without redeployment.',
     image: '/images/uci-sba.png',
@@ -326,6 +398,7 @@ type HomepageSection {
     liveUrl: 'https://carinacollective.kevinnorgaard.com',
     githubUrl: 'https://github.com/kevinnorgaard/contentful-blog',
     tagline: 'Full-stack blog platform with SSR built with Angular Universal and Contentful',
+    period: '2020',
     summary:
       'A server-side rendered lifestyle content platform serving multi-category articles across fashion, beauty, wellness, and art — powered by Contentful CMS, with Disqus comments, Instagram feed integration, and strong SEO out of the box.',
     image: '/images/carina-collective.png',

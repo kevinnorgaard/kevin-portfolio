@@ -148,9 +148,9 @@ export default function ProjectDetailPage({ params }: Props) {
           </div>
         ) : (
           <BrowserMockup url={project.liveUrl.replace('https://', '')} className="mb-16">
-            {project.image ? (
+            {(project.detailImage || project.image) ? (
               <img
-                src={project.image}
+                src={project.detailImage || project.image}
                 alt={`${project.name} screenshot`}
                 className="w-full h-auto block"
               />

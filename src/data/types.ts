@@ -22,8 +22,10 @@ export interface Project {
   summary: string
   tags: string[]
   image?: string
+  detailImage?: string
   video?: string
   featured: boolean
+  period?: string
   status: 'live' | 'beta' | 'archived'
   problem: string
   architecture: ProjectArchitecture
