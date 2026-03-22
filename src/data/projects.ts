@@ -81,7 +81,7 @@ export const projects: Project[] = [
     summary:
       'A personalized fitness coaching system powered by Claude AI that automatically reviews Strava activity data and Google Calendar history to plan, adjust, and log hypertrophy/strength workouts and running sessions. Uses MCP servers hosted in n8n to connect Claude Code to real-time fitness and scheduling APIs.',
     video: 'lWX_sNq0rns',
-    tags: ['Claude Code', 'MCP', 'Docker', 'n8n'],
+    tags: ['Claude Code', 'MCP', 'Skills', 'Docker', 'n8n'],
     order: 1,
     featured: true,
     status: 'live',
