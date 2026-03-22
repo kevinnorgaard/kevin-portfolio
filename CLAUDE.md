@@ -1,13 +1,8 @@
 # Kevin Portfolio
 
-## Tech Stack
-- Next.js 16 (App Router, Turbopack) + React 19 + TypeScript + Tailwind CSS
-- Static export (`output: 'export'`) with unoptimized images and trailing slashes
-- Node 20 (pinned in `.nvmrc`) -- run `nvm use 20` before building
-
 ## Development Workflow
 1. Make changes
-2. Verify locally with `npm run dev`
+2. Run `nvm use 20` then verify locally with `npm run dev`
 3. For visual/content changes: `rm -f screenshots/*.png` then `npm run screenshots -- <page>`
    - Pages: `home`, `projects`, `project-detail`
    - Captures mobile (iPhone 14) + desktop (1440p) in Chromium
@@ -16,16 +11,11 @@
 5. Sanity check the live site at kevinnorgaard.com (confirm deploy succeeded and pages load)
 
 ## Key Constraints
-- Static export only: no server actions, no API routes, no dynamic server features
-- Images must use `unoptimized: true` in next.config.js
-- Server Components cannot have `onClick` -- extract interactive elements to `'use client'` components
-- No iframes
+- Static export only: no server actions, no API routes, no dynamic server features (deployed to Namecheap cPanel via rsync, no Node server)
 
-## Data
-- Projects: `src/data/projects.ts`
-- Experience: `src/data/experience.ts`
-- Skills: `src/data/skills.ts`
-- Types: `src/data/types.ts`
+## Tech Stack
+- Next.js 16 (App Router, Turbopack) + React 19 + TypeScript + Tailwind CSS
+- Static export (`output: 'export'`) with unoptimized images and trailing slashes
 
 ## Design System
 - Background: #F8F9FA + mesh gradient (salmon/teal radial blobs)
