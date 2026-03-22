@@ -99,6 +99,7 @@ export default function ProjectCard({ project, maxTags = 4 }: ProjectCardProps) 
                          hover:-translate-y-0.5 motion-reduce:hover:translate-y-0"
               style={{ background: 'linear-gradient(90deg, #fca5a5, #f87171)' }}
               aria-label={`Open ${project.name} live app in new tab`}
+              onClick={(e) => e.stopPropagation()}
             >
               {project.video ? 'Watch Demo ↗' : 'View Live App ↗'}
             </a>

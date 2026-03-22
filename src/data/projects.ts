@@ -13,6 +13,7 @@ export const projects: Project[] = [
     image: '/images/pulse.png',
     detailImage: '/images/pulse-detail.png',
     tags: ['Next.js', 'TypeScript', 'Supabase', 'Vercel', 'Tailwind CSS', 'PostgreSQL'],
+    order: 4,
     featured: true,
     status: 'live',
     problem:
@@ -75,12 +76,13 @@ export const projects: Project[] = [
     name: 'AI Fitness Coach',
     liveUrl: 'https://youtu.be/lWX_sNq0rns',
     githubUrl: 'https://github.com/kevinnorgaard/ai-fitness-coach',
-    tagline: 'AI-powered strength & running coach using Claude, Strava, and Google Calendar via MCP',
+    tagline: 'AI agent that plans workouts based on Strava biometric data and Google Calendar workout history',
     period: '2025',
     summary:
       'A personalized fitness coaching system powered by Claude AI that automatically reviews Strava activity data and Google Calendar history to plan, adjust, and log hypertrophy/strength workouts and running sessions. Uses MCP servers hosted in n8n to connect Claude Code to real-time fitness and scheduling APIs.',
     video: 'lWX_sNq0rns',
-    tags: ['Claude AI', 'MCP', 'n8n', 'Strava API', 'Google Calendar API', 'Docker'],
+    tags: ['Claude Code', 'MCP', 'Docker', 'n8n'],
+    order: 1,
     featured: true,
     status: 'live',
     problem:
@@ -209,12 +211,13 @@ export const projects: Project[] = [
     name: 'UCI Phi Kappa Psi Website',
     liveUrl: 'https://uciphipsi.kevinnorgaard.com',
     githubUrl: 'https://github.com/kevinnorgaard/pkp',
-    tagline: 'Full-stack fraternity chapter website built with Angular, Firebase, and Hygraph CMS',
+    tagline: 'Chapter platform serving recruits, members, and alumni with CMS-driven content and event check-ins',
     period: '2018 – 2022',
     summary:
       'A full-stack platform serving recruits, active members, and alumni — with CMS-driven exec board and leadership history profiles, a recruitment interest form and event check-in flow, per-event attendance tracking, composite photo galleries, and a password-protected admin dashboard. Collected 250+ PNM contacts and 150+ alumni profiles within two years.',
     image: '/images/uci-phi-psi.png',
-    tags: ['Angular', 'TypeScript', 'Firebase', 'GraphQL', 'Apollo', 'Hygraph CMS', 'RxJS', 'Angular Material'],
+    tags: ['Angular 21', 'TypeScript', 'Firebase', 'GraphQL', 'Apollo'],
+    order: 2,
     featured: true,
     status: 'live',
     problem:
@@ -312,6 +315,7 @@ type MembershipPage {
       'An Angular SPA with a centralized Contentful-driven content layer — featuring an interactive FullCalendar event calendar, exec board and alumni directory profiles, toggleable speaker archives, and Mailchimp newsletter integration. Officers update all content without redeployment.',
     image: '/images/uci-sba.png',
     tags: ['Angular', 'TypeScript', 'Contentful', 'RxJS', 'FullCalendar', 'Bootstrap 3', 'Moment.js'],
+    order: 5,
     featured: true,
     status: 'live',
     problem:
@@ -394,15 +398,16 @@ type HomepageSection {
 
   {
     slug: 'carina-collective',
-    name: 'Lifestyle Blog Platform',
+    name: 'Carina Collective',
     liveUrl: 'https://blog.kevinnorgaard.com',
     githubUrl: 'https://github.com/kevinnorgaard/blog',
-    tagline: 'Full-stack blog platform with SSR built with Angular 21 and Contentful, deployed on Google Cloud Run',
+    tagline: 'Server-rendered lifestyle content platform with CMS-managed blog posts across four categories',
     period: '2020',
     summary:
       'A server-side rendered lifestyle content platform serving multi-category articles across fashion, beauty, wellness, and art -- powered by Angular 21 with Express 5, Contentful CMS, Disqus comments, and strong SEO, deployed on Google Cloud Run.',
     image: '/images/carina-collective.png',
-    tags: ['Angular 21', 'TypeScript', 'Express 5', 'Contentful SDK', 'RxJS', 'Disqus', 'Google Cloud Run'],
+    tags: ['Angular 21', 'TypeScript', 'GCP', 'Docker', 'Express 5', 'Cloud Run'],
+    order: 3,
     featured: true,
     status: 'live',
     problem:
@@ -474,7 +479,9 @@ type HomepageFeatured {
   },
 ]
 
-export const featuredProjects = projects.filter((p) => p.featured)
+export const sortedProjects = [...projects].sort((a, b) => a.order - b.order)
+
+export const featuredProjects = sortedProjects.filter((p) => p.featured)
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug)

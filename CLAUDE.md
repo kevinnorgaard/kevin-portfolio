@@ -13,7 +13,7 @@
 - Static export only: no server actions, no API routes, no dynamic server features
 - Images must use `unoptimized: true` in next.config.js
 - Server Components cannot have `onClick` -- extract interactive elements to `'use client'` components
-- No iframes, no GitHub/Twitter/Instagram links
+- No iframes
 
 ## Data
 - Projects: `src/data/projects.ts`

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { projects } from '@/data/projects'
+import { sortedProjects } from '@/data/projects'
 import ProjectCard from '@/components/projects/ProjectCard'
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function ProjectsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {sortedProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} maxTags={4} />
           ))}
         </div>

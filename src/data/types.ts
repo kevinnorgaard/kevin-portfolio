@@ -24,6 +24,7 @@ export interface Project {
   image?: string
   detailImage?: string
   video?: string
+  order: number
   featured: boolean
   period?: string
   status: 'live' | 'beta' | 'archived'
