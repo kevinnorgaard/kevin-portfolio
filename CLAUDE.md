@@ -5,9 +5,15 @@
 - Static export (`output: 'export'`) with unoptimized images and trailing slashes
 - Node 20 (pinned in `.nvmrc`) -- run `nvm use 20` before building
 
-## Build & Deploy
-- `npm run build` -- builds static export to `out/`
-- `npm run deploy` -- builds and rsyncs `out/` to Namecheap cPanel (kevinnorgaard.com)
+## Development Workflow
+1. Make changes
+2. Verify locally with `npm run dev`
+3. For visual/content changes: `rm -f screenshots/*.png` then `npm run screenshots -- <page>`
+   - Pages: `home`, `projects`, `project-detail`
+   - Captures mobile (iPhone 14) + desktop (1440p) in Chromium
+   - Review the screenshots to verify changes look correct and are reasonably aesthetic
+4. Deploy with `npm run deploy` (builds and rsyncs to kevinnorgaard.com)
+5. Verify the live site at kevinnorgaard.com
 
 ## Key Constraints
 - Static export only: no server actions, no API routes, no dynamic server features
