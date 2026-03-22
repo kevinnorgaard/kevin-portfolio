@@ -40,7 +40,7 @@ src/
 ## Local Development
 
 ```bash
-nvm use 24   # Node 24 LTS required (pinned in .nvmrc)
+nvm use 24
 npm install
 npm run dev
 # Open http://localhost:3000
