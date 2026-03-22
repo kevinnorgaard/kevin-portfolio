@@ -2,7 +2,17 @@
   "permissions": {
     "allow": [
       "Bash(node:*)",
-      "Bash(source:*)"
+      "Bash(source:*)",
+      "Bash(tr >:*)",
+      "WebSearch",
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(npm install:*)",
+      "Bash(npx next:*)",
+      "Bash(lsof -ti:3000)",
+      "Bash(xargs kill:*)"
     ]
   }
 }
