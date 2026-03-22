@@ -6,10 +6,10 @@ Personal portfolio site for [kevinnorgaard.com](https://kevinnorgaard.com). Buil
 
 | Layer | Choice |
 |---|---|
-| Runtime | Node.js 20 |
-| Framework | Next.js 16 (App Router + Turbopack) |
+| Runtime | Node.js 24 LTS |
+| Framework | Next.js 16.2 (App Router + Turbopack) |
 | Language | TypeScript |
-| Styling | Tailwind CSS |
+| Styling | Tailwind CSS 4 |
 | UI | React 19 |
 | Fonts | Inter + JetBrains Mono (Google Fonts) |
 | Syntax highlighting | Shiki (server-side) |
@@ -40,7 +40,7 @@ src/
 ## Local Development
 
 ```bash
-nvm use 20   # Node 20 required (pinned in .nvmrc)
+nvm use 24   # Node 24 LTS required (pinned in .nvmrc)
 npm install
 npm run dev
 # Open http://localhost:3000
