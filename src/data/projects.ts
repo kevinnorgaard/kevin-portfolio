@@ -395,34 +395,34 @@ type HomepageSection {
   {
     slug: 'carina-collective',
     name: 'Lifestyle Blog Platform',
-    liveUrl: 'https://carinacollective.kevinnorgaard.com',
-    githubUrl: 'https://github.com/kevinnorgaard/contentful-blog',
-    tagline: 'Full-stack blog platform with SSR built with Angular Universal and Contentful',
+    liveUrl: 'https://blog.kevinnorgaard.com',
+    githubUrl: 'https://github.com/kevinnorgaard/blog',
+    tagline: 'Full-stack blog platform with SSR built with Angular 21 and Contentful, deployed on Google Cloud Run',
     period: '2020',
     summary:
-      'A server-side rendered lifestyle content platform serving multi-category articles across fashion, beauty, wellness, and art — powered by Contentful CMS, with Disqus comments, Instagram feed integration, and strong SEO out of the box.',
+      'A server-side rendered lifestyle content platform serving multi-category articles across fashion, beauty, wellness, and art -- powered by Angular 21 with Express 5, Contentful CMS, Disqus comments, and strong SEO, deployed on Google Cloud Run.',
     image: '/images/carina-collective.png',
-    tags: ['Angular', 'TypeScript', 'Angular Universal', 'Express.js', 'Contentful SDK', 'RxJS', 'Disqus', 'Bootstrap 4'],
+    tags: ['Angular 21', 'TypeScript', 'Express 5', 'Contentful SDK', 'RxJS', 'Disqus', 'Google Cloud Run'],
     featured: true,
     status: 'live',
     problem:
-      'A lifestyle content creator needed a custom platform to publish multi-category content across fashion, beauty, wellness, and art — without the limitations of off-the-shelf blogging tools. The site needed strong SEO for content discovery, a smooth reading experience with rich-text rendering and comments, and a CMS workflow that kept the creator in control of content without developer involvement.',
+      'A lifestyle content creator needed a custom platform to publish multi-category content across fashion, beauty, wellness, and art -- without the limitations of off-the-shelf blogging tools. The site needed strong SEO for content discovery, a smooth reading experience with rich-text rendering and comments, and a CMS workflow that kept the creator in control of content without developer involvement.',
     architecture: {
       mermaid: `graph TD
     A["Contentful CMS"]
-    B["Angular Universal + Express.js"]
+    B["Angular 21 SSR + Express 5"]
     C["Article Pages"]
     D["Category Views"]
     E["Disqus Comments"]
-    F["Instagram Feed"]
+    F["Google Cloud Run"]
 
     A -->|"Contentful SDK"| B
     B --> C
     B --> D
     C --> E
-    C --> F`,
+    B -->|"Docker + Cloud Build"| F`,
       explanation:
-        'Angular Universal with Express.js handles server-side rendering, ensuring fully hydrated HTML is sent to the browser on first load — critical for SEO on content-heavy article pages. The Contentful SDK fetches article content, rich-text, and assets at request time. Disqus is embedded client-side for the comments system, and the Instagram feed is injected after hydration to keep SSR output clean.',
+        'Angular 21 with built-in SSR and Express 5 handles server-side rendering, ensuring fully hydrated HTML is sent to the browser on first load -- critical for SEO on content-heavy article pages. The Contentful SDK fetches article content, rich-text, and assets at request time. Disqus is embedded client-side for comments. The app is containerized and deployed to Google Cloud Run via Cloud Build with Kaniko caching.',
     },
     scale: {
       metrics: [
@@ -431,10 +431,10 @@ type HomepageSection {
         { label: 'CMS', value: 'Contentful' },
         { label: 'Comments', value: 'Disqus' },
         { label: 'SEO', value: 'Server-rendered' },
-        { label: 'Social', value: 'Instagram feed' },
+        { label: 'Hosting', value: 'Cloud Run' },
       ],
       details:
-        'SSR ensures search engines receive fully rendered HTML rather than a blank Angular shell — essential for a content-driven site where organic search is the primary traffic source. Rich-text from Contentful is rendered via the Contentful rich-text renderer, preserving formatting, embedded assets, and hyperlinks without custom parsing.',
+        'SSR ensures search engines receive fully rendered HTML rather than a blank Angular shell -- essential for a content-driven site where organic search is the primary traffic source. Rich-text from Contentful is rendered via the Contentful rich-text renderer, preserving formatting, embedded assets, and hyperlinks without custom parsing.',
     },
     dataModel: [
       {
