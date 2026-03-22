@@ -13,7 +13,7 @@
    - Captures mobile (iPhone 14) + desktop (1440p) in Chromium
    - Review the screenshots to verify changes look correct and are reasonably aesthetic
 4. Deploy with `npm run deploy` (builds and rsyncs to kevinnorgaard.com)
-5. Verify the live site at kevinnorgaard.com
+5. Sanity check the live site at kevinnorgaard.com (confirm deploy succeeded and pages load)
 
 ## Key Constraints
 - Static export only: no server actions, no API routes, no dynamic server features
