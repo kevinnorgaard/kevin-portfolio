@@ -31,7 +31,8 @@ export default function FeaturedProjects() {
           <div className="mt-6">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="text-sm font-semibold text-dark-slate/50 hover:text-teal transition-colors duration-200"
+              className="rounded-md text-sm font-semibold text-dark-slate/50 hover:text-teal transition-colors duration-200
+                         focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#F8F9FA]"
             >
               {showAll
                 ? '↑ Hide earlier projects'

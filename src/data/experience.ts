@@ -2,14 +2,24 @@ import type { Experience } from './types'
 
 export const experience: Experience[] = [
   {
-    company: 'eBay',
-    role: 'Software Engineer III',
-    period: 'Jan 2024 – Present',
+    company: 'DoorDash',
+    role: 'Software Engineer',
+    period: 'May 2026 – Present',
     location: 'New York, NY',
     current: true,
+    team: 'Media Platform',
+    bullets: [],
+    tags: [],
+  },
+  {
+    company: 'eBay',
+    role: 'Software Engineer III',
+    period: 'Jan 2024 – Feb 2026',
+    location: 'New York, NY',
+    current: false,
     promoted: true,
     summary:
-      'Promoted to SWE III after driving high-impact backend initiatives on the seller listing platform (35M+ daily requests). Currently leading delivery of complex global features and AI-driven tooling.',
+      'Promoted to SWE III after driving high-impact backend initiatives on the seller listing platform (35M+ daily requests), leading delivery of complex global features and AI-driven tooling.',
     bullets: [
       'Led backend delivery for phased rollout of Simple Delivery on the seller listing platform (35M+ daily requests) in Java and Spring Boot, driving an estimated $74.4M increase in 30-day revenue.',
       'Designed and implemented high-priority global market initiatives, including expanding international shipping solutions to mitigate tariff uncertainties and eliminating UK seller fees.',

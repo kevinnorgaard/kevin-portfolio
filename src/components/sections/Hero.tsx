@@ -88,14 +88,14 @@ export default function Hero() {
 
           {/* Tagline */}
           <p className="mt-3 sm:mt-5 text-sm sm:text-lg text-dark-slate max-w-2xl leading-relaxed animate-slide-up-delay opacity-0">
-            I&apos;m a product-minded software engineer who builds scalable systems handling 35M+ daily requests. Beyond the code, my real strength is zooming out to solve complex technical challenges across domains. I thrive in highly collaborative environments, partnering across teams to ship high-impact features and custom AI workflows.
+            I&apos;m a product-minded software engineer who builds scalable systems &mdash; backend platforms handling 35M+ daily requests, and the AI workflows that make teams faster. My real strength is zooming out to solve complex technical challenges across domains, partnering closely across teams to ship work that moves the needle.
           </p>
 
           {/* Quick Facts */}
           <dl className="mt-4 sm:mt-6 glass-card p-3 sm:p-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-3 sm:gap-y-4 max-w-2xl animate-slide-up-delay opacity-0">
             <div className="flex flex-col items-center justify-center">
               <dt className="font-mono text-xs text-dark-slate/40 uppercase tracking-widest">Background</dt>
-              <dd className="mt-0.5 text-xs sm:text-sm font-bold text-dark-slate/80">Software Engineer III @ eBay</dd>
+              <dd className="mt-0.5 text-xs sm:text-sm font-bold text-dark-slate/80">Software Engineer @ DoorDash</dd>
             </div>
             <div className="flex flex-col items-center justify-center">
               <dt className="font-mono text-xs text-dark-slate/40 uppercase tracking-widest">Experience</dt>
@@ -103,7 +103,7 @@ export default function Hero() {
             </div>
             <div className="flex flex-col items-center justify-center">
               <dt className="font-mono text-xs text-dark-slate/40 uppercase tracking-widest">Location</dt>
-              <dd className="mt-1 text-xs sm:text-sm font-bold text-dark-slate/80 leading-snug">Brooklyn, NY<br />Open to CA / Remote</dd>
+              <dd className="mt-1 text-xs sm:text-sm font-bold text-dark-slate/80 leading-snug">Brooklyn, NY</dd>
             </div>
             <div className="flex flex-col items-center justify-center">
               <dt className="font-mono text-xs text-dark-slate/40 uppercase tracking-widest">Education</dt>

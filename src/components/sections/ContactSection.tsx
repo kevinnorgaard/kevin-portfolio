@@ -16,8 +16,8 @@ export default function ContactSection() {
           <h2 id="contact-heading" className="section-heading">
             Let&apos;s Build Something
           </h2>
-          <p className="section-subheading mx-auto max-w-lg sm:whitespace-nowrap">
-            Open to senior engineering roles and interesting conversations.
+          <p className="section-subheading mx-auto max-w-lg">
+            Always happy to connect, talk shop, or jam on interesting problems.
           </p>
 
           {/* Glassmorphic contact card */}

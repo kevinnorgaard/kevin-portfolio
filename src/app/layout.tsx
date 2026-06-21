@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: '%s | Kevin Z Norgaard',
   },
   description:
-    'Portfolio of Kevin Z Norgaard — software engineer building scalable backend systems and AI integrations at eBay. Projects, experience, and skills.',
+    'Portfolio of Kevin Z Norgaard — software engineer building scalable backend systems and AI integrations. Projects, experience, and skills.',
   keywords: [
     'Software Engineer',
     'Backend Engineer',
@@ -32,7 +32,6 @@ export const metadata: Metadata = {
     'Next.js',
     'TypeScript',
     'Distributed Systems',
-    'eBay',
     'Kevin Z Norgaard',
   ],
   authors: [{ name: 'Kevin Z Norgaard', url: 'https://kevinnorgaard.com' }],
@@ -43,14 +42,14 @@ export const metadata: Metadata = {
     siteName: 'Kevin Z Norgaard',
     title: 'Kevin Z Norgaard – Software Engineer',
     description:
-      'Portfolio of Kevin Z Norgaard — software engineer building scalable backend systems and AI integrations at eBay. Projects, experience, and skills.',
+      'Portfolio of Kevin Z Norgaard — software engineer building scalable backend systems and AI integrations. Projects, experience, and skills.',
     images: [{ url: '/images/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Kevin Z Norgaard – Software Engineer',
     description:
-      'Portfolio of Kevin Z Norgaard — software engineer building scalable backend systems and AI integrations at eBay. Projects, experience, and skills.',
+      'Portfolio of Kevin Z Norgaard — software engineer building scalable backend systems and AI integrations. Projects, experience, and skills.',
     images: ['/images/og-image.png'],
   },
   metadataBase: new URL('https://kevinnorgaard.com'),
@@ -87,8 +86,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               '@type': 'Person',
               name: 'Kevin Z Norgaard',
               url: 'https://kevinnorgaard.com',
-              jobTitle: 'Software Engineer III',
-              worksFor: { '@type': 'Organization', name: 'eBay' },
+              jobTitle: 'Software Engineer',
+              worksFor: { '@type': 'Organization', name: 'DoorDash' },
               alumniOf: {
                 '@type': 'CollegeOrUniversity',
                 name: 'University of California, Irvine',

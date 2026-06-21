@@ -43,11 +43,12 @@ export interface Experience {
   role: string
   period: string
   location: string
-  summary: string
+  summary?: string
   bullets: string[]
   tags: string[]
   current?: boolean
   promoted?: boolean // true if this role was a promotion at the same company
+  team?: string // optional team/org subtitle (e.g. for a newly-joined role)
 }
 
 export interface SkillCategory {

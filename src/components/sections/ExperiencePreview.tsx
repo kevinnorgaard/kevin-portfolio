@@ -5,9 +5,9 @@ import { experience } from '@/data/experience'
 import GlassCard from '@/components/ui/GlassCard'
 import Tag from '@/components/ui/Tag'
 
-// First 3 entries are the main roles (eBay III, eBay II, GM); last 2 are internships
+// First 3 entries are the current/recent roles; the rest are earlier roles + internships
 const mainExperience = experience.slice(0, 3)
-const internships = experience.slice(3)
+const earlierRoles = experience.slice(3)
 
 export default function ExperiencePreview() {
   const [showAll, setShowAll] = useState(false)
@@ -57,6 +57,9 @@ export default function ExperiencePreview() {
                           </span>
                         )}
                       </div>
+                      {exp.team && (
+                        <p className="mt-0.5 font-mono text-xs text-dark-slate">{exp.team}</p>
+                      )}
                     </div>
 
                     <div className="sm:text-right shrink-0">
@@ -90,11 +93,12 @@ export default function ExperiencePreview() {
           <div className="mt-6 sm:pl-14">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="text-sm font-semibold text-dark-slate/50 hover:text-teal transition-colors duration-200"
+              className="rounded-md text-sm font-semibold text-dark-slate/50 hover:text-teal transition-colors duration-200
+                         focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#F8F9FA]"
             >
               {showAll
-                ? `↑ Hide internships`
-                : `+ View ${internships.length} earlier internships`}
+                ? `↑ Hide earlier roles`
+                : `+ View ${earlierRoles.length} earlier roles`}
             </button>
           </div>
         </div>
