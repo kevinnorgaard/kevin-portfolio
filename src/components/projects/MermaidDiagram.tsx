@@ -51,7 +51,7 @@ export default function MermaidDiagram({ chart, className }: MermaidDiagramProps
             ref.current.innerHTML = svg
           }
         }
-      } catch (err) {
+      } catch {
         if (!cancelled && ref.current) {
           ref.current.innerHTML = `<pre class="text-xs text-dark-slate/60 p-4 overflow-auto">${chart}</pre>`
         }

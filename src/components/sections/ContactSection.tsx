@@ -1,5 +1,4 @@
 import CopyEmailButton from '@/components/ui/CopyEmailButton'
-import Button from '@/components/ui/Button'
 
 const RESUME_URL =
   'https://drive.google.com/file/d/1SSiXrhUnJI8cMZq8-PT2zF2ZWuDIauV0/view?usp=sharing'
