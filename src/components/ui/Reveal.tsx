@@ -30,7 +30,9 @@ export default function Reveal({
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     // Hide now (the element is below the fold, so no visible flash), then
-    // reveal once it scrolls into view.
+    // reveal once it scrolls into view. Intentional: we render visible for
+    // no-JS/SEO and only hide on mount after checking reduced-motion + DOM.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setState('hidden')
 
     const observer = new IntersectionObserver(
