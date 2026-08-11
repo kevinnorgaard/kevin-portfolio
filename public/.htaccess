@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# SSL renewal: ACME challenges must be served as-is, before any redirect
+RewriteRule ^\.well-known/acme-challenge/ - [L]
+
 # Redirect www to non-www
 RewriteCond %{HTTP_HOST} ^www\.kevinnorgaard\.com [NC]
 RewriteRule ^(.*)$ https://kevinnorgaard.com/$1 [L,R=301]
